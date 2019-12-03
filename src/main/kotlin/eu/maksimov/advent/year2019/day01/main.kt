@@ -1,4 +1,4 @@
-package eu.maksimov.advent.year2019.day1
+package eu.maksimov.advent.year2019.day01
 
 import eu.maksimov.advent.year2019.readResourceLines
 

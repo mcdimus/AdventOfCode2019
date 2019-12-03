@@ -1,4 +1,4 @@
-package eu.maksimov.advent.year2019.day1
+package eu.maksimov.advent.year2019.day01
 
 data class Module(val mass: Int) {
 

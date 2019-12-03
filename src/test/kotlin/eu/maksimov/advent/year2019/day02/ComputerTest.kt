@@ -1,4 +1,4 @@
-package eu.maksimov.advent.year2019.day2
+package eu.maksimov.advent.year2019.day02
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
