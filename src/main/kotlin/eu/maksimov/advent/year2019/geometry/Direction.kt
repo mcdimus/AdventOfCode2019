@@ -1,4 +1,4 @@
-package eu.maksimov.advent.year2019.day03
+package eu.maksimov.advent.year2019.geometry
 
 enum class Direction(private val codes: Set<String>) {
     UP(setOf("U", "UP")),

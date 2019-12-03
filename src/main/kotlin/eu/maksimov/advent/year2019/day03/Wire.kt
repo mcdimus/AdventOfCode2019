@@ -1,12 +1,16 @@
 package eu.maksimov.advent.year2019.day03
 
-class Wire(input: String) {
+import eu.maksimov.advent.year2019.geometry.Line
+import eu.maksimov.advent.year2019.geometry.Point
+import eu.maksimov.advent.year2019.geometry.PointModifier
+
+class Wire(private val centralPoint: Point, input: String) {
 
     private val verticalSections: MutableList<Line> = emptyList<Line>().toMutableList()
     private val horizontalSections: MutableList<Line> = emptyList<Line>().toMutableList()
 
     init {
-        var currentPoint = Point(0, 0)
+        var currentPoint = centralPoint
         val pointModifiers = input.split(',').map(::PointModifier)
 
         for (pointModifier in pointModifiers) {
@@ -36,7 +40,7 @@ class Wire(input: String) {
             }
         }
         return intersections.also {
-            it.remove(Point(0, 0))
+            it.remove(centralPoint)
         }
     }
 

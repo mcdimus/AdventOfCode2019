@@ -1,13 +1,18 @@
 package eu.maksimov.advent.year2019.day03
 
+import eu.maksimov.advent.year2019.geometry.Point
 import eu.maksimov.advent.year2019.readResourceLines
 
 fun main() {
+    val centralPoint = Point(0, 0)
+
     val wires = readResourceLines("day03_input")
         .filter { it.isNotBlank() }
-        .map { Wire(it) }
+        .map { Wire(centralPoint, it) }
 
-    val (point, distance) = wires[0].findIntersections(wires[1]).findClosestTo(Point(0, 0))
+    val (point, distance) = wires[0].findIntersections(wires[1]).findClosestTo(
+        centralPoint
+    )
 
     println("What is the Manhattan distance from the central port to the closest intersection?")
     println(distance)

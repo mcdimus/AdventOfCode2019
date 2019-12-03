@@ -1,11 +1,16 @@
-package eu.maksimov.advent.year2019.day03
+package eu.maksimov.advent.year2019.geometry
 
+/**
+ *  Either horizontal or vertical line
+ */
 data class Line(val a: Point, val b: Point) {
 
     fun isHorizontal() = a.y == b.y
 
+    /**
+     *  works only with vertical and horizontal lines
+     */
     fun findIntersection(other: Line): Point? {
-        // works only with vertical and horizontal lines
         val theoreticalIntersection = if (this.isHorizontal() && !other.isHorizontal()) {
             Point(other.a.x, this.a.y)
         } else if (!this.isHorizontal() && other.isHorizontal()) {
@@ -18,11 +23,11 @@ data class Line(val a: Point, val b: Point) {
             return null // lines are parallel
         }
 
-        return if (this.contains(theoreticalIntersection) && other.contains(theoreticalIntersection)) theoreticalIntersection else null
+        return if (this.contains(theoreticalIntersection) && other.contains(theoreticalIntersection)) {
+            theoreticalIntersection
+        } else null
     }
 
-    fun contains(point: Point): Boolean {
-        return a.distanceTo(point) + b.distanceTo(point) == a.distanceTo(b)
-    }
+    fun contains(point: Point): Boolean = a.distanceTo(point) + b.distanceTo(point) == a.distanceTo(b)
 
 }
