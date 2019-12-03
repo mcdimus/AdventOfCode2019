@@ -9,12 +9,36 @@ fun main() {
         .map { it.toInt() }
         .toIntArray()
 
-    program[1] = 12
-    program[2] = 2
-
-    val computer = Computer(program)
+    val computer = Computer(program).apply {
+        setNoun(12)
+        setVerb(2)
+    }
     computer.run()
 
     println("What value is left at position 0 after the program halts?")
-    println(computer.getState()[0])
+    println(computer.getCurrentMemory()[0])
+
+    computer.reset()
+
+    var noun = 0
+    var verb = 0
+    var result: Int
+    outer@ for (i in 0..99) {
+        noun = i
+        for (j in 0..99) {
+            verb = j
+            computer.setNoun(noun)
+            computer.setVerb(verb)
+            computer.run()
+            result = computer.getCurrentMemory()[0]
+            computer.reset()
+            if (result == 19690720) {
+                println("result = $result")
+                break@outer
+            }
+        }
+    }
+
+    println("What is 100 * noun + verb?")
+    println("100 * $noun + $verb = ${100 * noun + verb}")
 }
