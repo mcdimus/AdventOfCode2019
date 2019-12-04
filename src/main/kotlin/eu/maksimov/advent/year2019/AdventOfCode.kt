@@ -46,4 +46,7 @@ abstract class AdventOfCode(val day: Int, val year: Year = Year.of(2019)) {
         }
     }
 
+    private fun readResourceLines(filename: String) =
+        ClassLoader.getSystemResource(filename).readText().split("\n")
+
 }

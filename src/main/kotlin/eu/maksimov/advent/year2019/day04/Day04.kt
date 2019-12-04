@@ -1,7 +1,7 @@
 package eu.maksimov.advent.year2019.day04
 
 import eu.maksimov.advent.year2019.AdventOfCode
-import java.util.*
+import eu.maksimov.advent.year2019.digits
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
@@ -62,16 +62,6 @@ class Day04 : AdventOfCode(4) {
             }
         }
         return numbers.size
-    }
-
-    fun Int.digits(): Deque<Int> {
-        val stack: Deque<Int> = ArrayDeque<Int>()
-        var number = this
-        while (number > 0) {
-            stack.push(number % 10)
-            number /= 10
-        }
-        return stack
     }
 
 }
