@@ -23,7 +23,7 @@ class Day02 : AdventOfCode(2) {
 
         computer.run()
 
-        return computer.getCurrentMemory()[0]
+        return computer.currentMemory[0]
     }
 
     override fun stage2(): Any {
@@ -39,7 +39,7 @@ class Day02 : AdventOfCode(2) {
                 computer.setNoun(noun)
                 computer.setVerb(verb)
                 computer.run()
-                result = computer.getCurrentMemory()[0]
+                result = computer.currentMemory[0]
                 computer.reset()
                 if (result == 19690720) {
                     break@outer
