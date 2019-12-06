@@ -6,7 +6,7 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 class Day02 : AdventOfCode(2) {
 
-    lateinit var computer: Computer
+    private lateinit var computer: Computer
 
     override fun parseInput() {
         val program = input.filter { it.isNotBlank() }
