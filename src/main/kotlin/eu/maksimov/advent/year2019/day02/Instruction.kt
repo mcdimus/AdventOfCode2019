@@ -83,6 +83,9 @@ class SumInstruction(address: Int, parameterModes: List<Mode>) : Instruction(add
 
 class InputInstruction(address: Int, parameterModes: List<Mode>) : Instruction(address, 3, parameterModes) {
     override fun apply(computer: Computer): Boolean {
+        while (computer.inputs.isEmpty()) {
+            Thread.sleep(1)
+        }
         val input = computer.inputs.poll()
         val targetIndex = computer.currentMemory[address + 1]
 
@@ -96,7 +99,7 @@ class InputInstruction(address: Int, parameterModes: List<Mode>) : Instruction(a
 class OutputInstruction(address: Int, parameterModes: List<Mode>) : Instruction(address, 4, parameterModes) {
     override fun apply(computer: Computer): Boolean {
         val param1Value = getParamValue(1, computer)
-        computer.output.add(param1Value.toString())
+        computer.output.push(param1Value)
         return true
     }
 

@@ -7,7 +7,8 @@ data class Computer(
     var inputs: Deque<Int> = ArrayDeque<Int>()
 ) {
 
-    var output: MutableList<String> = mutableListOf()
+    var output: Deque<Int> = ArrayDeque<Int>()
+    var done = false
 
     var currentMemory = initialMemory.copyOf()
         private set
@@ -25,12 +26,14 @@ data class Computer(
         while (currentInstruction.apply(this)) {
             currentInstruction = Instruction.of(this, currentInstruction.nextInstructionAddress())
         }
+        done = true
     }
 
     fun reset() {
         currentMemory = initialMemory.copyOf()
         inputs = ArrayDeque<Int>()
-        output = mutableListOf()
+        output = ArrayDeque<Int>()
+        done = false
     }
 
 }
