@@ -36,7 +36,7 @@ sealed class Instruction(
             return when (opcode) {
                 1 -> SumInstruction(address, parameterModes)
                 2 -> MultiplyInstruction(address, parameterModes)
-                3 -> AskInputInstruction(address, parameterModes)
+                3 -> InputInstruction(address, parameterModes)
                 4 -> OutputInstruction(address, parameterModes)
                 5 -> JumpIfTrueInstruction(address, parameterModes)
                 6 -> JumpIfFalseInstruction(address, parameterModes)
@@ -81,10 +81,9 @@ class SumInstruction(address: Int, parameterModes: List<Mode>) : Instruction(add
     override fun nextInstructionAddress() = address + 4
 }
 
-class AskInputInstruction(address: Int, parameterModes: List<Mode>) : Instruction(address, 3, parameterModes) {
+class InputInstruction(address: Int, parameterModes: List<Mode>) : Instruction(address, 3, parameterModes) {
     override fun apply(computer: Computer): Boolean {
-        print("Input: ")
-        val input = readLine()!!.toInt()
+        val input = computer.inputs.poll()
         val targetIndex = computer.currentMemory[address + 1]
 
         computer.currentMemory[targetIndex] = input;
@@ -97,7 +96,7 @@ class AskInputInstruction(address: Int, parameterModes: List<Mode>) : Instructio
 class OutputInstruction(address: Int, parameterModes: List<Mode>) : Instruction(address, 4, parameterModes) {
     override fun apply(computer: Computer): Boolean {
         val param1Value = getParamValue(1, computer)
-        println(param1Value)
+        computer.output.add(param1Value.toString())
         return true
     }
 

@@ -20,16 +20,20 @@ class Day05 : AdventOfCode(5) {
 
     override fun stage1(): Any {
         println("After providing 1 to the only input instruction and passing all the tests, what diagnostic code does the program produce?")
+        computer.inputs.offer(1)
         computer.run()
-        computer.reset()
-        return "ignore me"
+        return computer.output.last().also {
+            computer.reset()
+        }
     }
 
     override fun stage2(): Any {
         println("What is the diagnostic code for system ID 5?")
+        computer.inputs.offer(5)
         computer.run()
-        computer.reset()
-        return "ignore me"
+        return computer.output.last().also {
+            computer.reset()
+        }
     }
 
 }

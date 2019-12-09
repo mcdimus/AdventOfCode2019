@@ -1,6 +1,13 @@
 package eu.maksimov.advent.year2019.day02
 
-data class Computer(private val initialMemory: IntArray) {
+import java.util.*
+
+data class Computer(
+    private val initialMemory: IntArray,
+    var inputs: Deque<Int> = ArrayDeque<Int>()
+) {
+
+    var output: MutableList<String> = mutableListOf()
 
     var currentMemory = initialMemory.copyOf()
         private set
@@ -22,6 +29,8 @@ data class Computer(private val initialMemory: IntArray) {
 
     fun reset() {
         currentMemory = initialMemory.copyOf()
+        inputs = ArrayDeque<Int>()
+        output = mutableListOf()
     }
 
 }
